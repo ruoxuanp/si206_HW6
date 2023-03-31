@@ -4,8 +4,8 @@ import unittest
 import os
 
 ###########################################
-# Your name:                              #
-# Who you worked with:                    #
+# Your name:   Ruoxuan Pang               #
+# Who you worked with:  Haiming Chen      #
 ###########################################
 
 def load_json(filename):
@@ -23,8 +23,13 @@ def load_json(filename):
         if the cache exists, a dict with loaded data
         if the cache does not exist, an empty dict
     '''
+    try:
+        with open(filename, 'r') as f:
+            json_data = json.load(f)
+            return json_data
+    except:
+        return {}
 
-    pass
 
 def write_json(filename, dict):
     '''
