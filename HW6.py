@@ -155,7 +155,21 @@ def calculate_bmi(filename):
     dict: dictionary with the name as a key and the BMI as the value
     '''
 
-    pass
+    data = load_json(filename)
+    bmi_dict = {}
+    for page in data.keys():
+        for character in data[page]:
+            if character['height'] != 'unknown' and character['mass'] !='unknown':
+                mass = character['mass']
+                if "," in mass:
+                    mass = mass.replace(',', '')
+                mass = float(mass)
+                height = float(character['height'])
+                bmi = 10000 * mass/(height*height)
+                bmi_dict[character['name']] = round(bmi, 2)
+
+    return bmi_dict
+    
 
 class TestHomework6(unittest.TestCase):
     def setUp(self):
