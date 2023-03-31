@@ -48,8 +48,9 @@ def write_json(filename, dict):
     None
         does not return anything
     '''  
+    with open(filename, 'w') as f:
+        json.dump(dict, f)
 
-    pass
 
 def get_swapi_info(url, params=None):
     '''
