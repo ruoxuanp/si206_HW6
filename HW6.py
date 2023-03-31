@@ -93,7 +93,18 @@ def cache_all_pages(people_url, filename):
         
     '''
 
-    pass
+    data = load_json(filename)
+
+    for i in range(1, 10):
+        page = f"page {i}"
+        if page not in data:
+            url = people_url + "?page=" +str(i)
+            params = {"page": str(i)}
+            page_data = get_swapi_info(url, params)
+            data[page] = page_data['results']
+
+    write_json(filename,data)
+
 
 def get_starships(filename):
     '''
