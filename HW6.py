@@ -69,7 +69,14 @@ def get_swapi_info(url, params=None):
     dict: dictionary representation of the decoded JSON.
     '''
 
-    pass
+    try:
+        resp = requests.get(url, params)
+        resp.raise_for_status()
+        data = json.loads(resp.text)
+        return data
+    except:
+        print("Exception!")
+        return None
 
 def cache_all_pages(people_url, filename):
     '''
