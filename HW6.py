@@ -121,7 +121,20 @@ def get_starships(filename):
     starships as the value
     '''
 
-    pass
+    data = load_json(filename)
+    starships = {}
+    for i in range(1,10):
+        page = "page " + str(i)
+        for character in data[page]:
+            if character['starships'] != []:
+                list = []
+                for url in character['starships']:
+                    info = get_swapi_info(url)
+                    list.append(info['name'])
+
+                starships[character['name']] = list
+
+    return starships
 
 #################### EXTRA CREDIT ######################
 
